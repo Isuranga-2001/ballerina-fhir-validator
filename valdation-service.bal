@@ -4,23 +4,42 @@ import ballerinax/health.fhir.r4.validator;
 import ballerina/io;
 
 service /fhir\-validator on new http:Listener(9090) {
+
     resource function post validate(http:Caller caller, http:Request req) returns error? {
-        json body = check req.getJsonPayload();
+        json body;
 
-        r4:FHIRValidationError? validateFHIRResourceJson = validator:validate(body);
-
-        if validateFHIRResourceJson is r4:FHIRValidationError {
+        // Attempt to extract the JSON payload
+        var result = req.getJsonPayload();
+        if result is json {
+            body = result;
+        } else {
+            io:println("Invalid JSON payload received.");
             http:Response response = new;
+            response.statusCode = 400; // Bad Request
+            response.setJsonPayload({ "successful": false, "errors": ["Invalid JSON format"] });
+            check caller->respond(response);
+            return;
+        }
+
+        // Validate the FHIR resource
+        r4:FHIRValidationError? validationResult = validator:validate(body);
+
+        http:Response response = new;
+
+        if validationResult is r4:FHIRValidationError {
+            io:println("FHIR Validation Failed: ", validationResult.message());
+            response.statusCode = 400; // Bad Request
             response.setJsonPayload({
                 "successful": false,
-                "errors": validateFHIRResourceJson.message()
+                "errors": validationResult.message()
             });
+            io:println(validationResult);
+        } else {
+            io:println("FHIR Validation Successful.");
+            response.statusCode = 200; // OK
+            response.setJsonPayload({ "successful": true, "errors": [] });
+        }
 
-            io:println(validateFHIRResourceJson);
-
-            check caller->respond(response);
-        } 
-        
-        check caller->respond({ "successful": true, "errors": [] });
+        check caller->respond(response);
     }
 }
