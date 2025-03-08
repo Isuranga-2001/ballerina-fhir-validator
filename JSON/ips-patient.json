@@ -1,0 +1,74 @@
+{
+  "resourceType": "Patient",
+  "id": "ips-example",
+  "meta": {
+    "profile": ["http://hl7.org/fhir/uv/ips/StructureDefinition/Patient-uv-ips"]
+  },
+  "identifier": [
+    {
+      "use": "official",
+      "system": "urn:oid:1.2.36.146.595.217.0.1",
+      "value": "123456789"
+    }
+  ],
+  "active": true,
+  "name": [
+    {
+      "use": "official",
+      "family": "Doe",
+      "given": ["John", "A"]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "+1-555-555-1234",
+      "use": "mobile"
+    },
+    {
+      "system": "email",
+      "value": "john.doe@example.com"
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1985-07-15",
+  "address": [
+    {
+      "use": "home",
+      "line": ["123 Main Street"],
+      "city": "Springfield",
+      "state": "IL",
+      "postalCode": "62704",
+      "country": "US"
+    }
+  ],
+  "communication": [
+    {
+      "language": {
+        "coding": [
+          {
+            "system": "urn:ietf:bcp:47",
+            "code": "en",
+            "display": "English"
+          }
+        ],
+        "text": "English"
+      },
+      "preferred": true
+    }
+  ],
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/patient-nationality",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "urn:iso:std:iso:3166",
+            "code": "US",
+            "display": "United States of America"
+          }
+        ]
+      }
+    }
+  ]
+}
