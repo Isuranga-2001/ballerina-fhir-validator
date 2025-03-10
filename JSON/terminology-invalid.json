@@ -1,0 +1,27 @@
+{
+    "resourceType": "Patient",
+    "id": "invalid-us-core-patient",
+    "name": [
+        {
+            "use": "official",
+            "family": "Doe",
+            "given": [
+                "Jane"
+            ]
+        }
+    ],
+    "birthDate": "1990-12-31",
+    "communication": [
+        {
+            "language": {
+                "coding": [
+                    {
+                        "system": "urn:ietf:bcp:47",
+                        "code": "xx-123",
+                        "display": "English"
+                    }
+                ]
+            }
+        }
+    ]
+}

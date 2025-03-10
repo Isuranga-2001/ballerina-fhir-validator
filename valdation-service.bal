@@ -1,5 +1,6 @@
 import ballerina/http;
 import ballerinax/health.fhir.r4;
+import ballerinax/health.fhir.r4.international401;
 import ballerinax/health.fhir.r4.validator;
 import ballerina/io;
 
@@ -21,7 +22,8 @@ service /fhir\-validator on new http:Listener(9090) {
         }
 
         // Validate the FHIR resource
-        r4:FHIRValidationError? validationResult = validator:validate(body);
+        //r4:FHIRValidationError? validationResult = validator:validate(body);
+        r4:FHIRValidationError? validationResult = validator:validate(body, international401:Observation);
 
         http:Response response = new;
 
