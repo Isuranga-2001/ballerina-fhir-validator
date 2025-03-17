@@ -5,6 +5,7 @@ This project is an example validator service to test the Ballerina Health FHIR V
 ## Features
 
 - Validate FHIR resources against the FHIR R4 specification.
+- Validate FHIR resources against the US Core 700 Patient Profile.
 - Return detailed validation errors if the resource is invalid.
 - Return a success message if the resource is valid.
 
@@ -36,12 +37,34 @@ This project is an example validator service to test the Ballerina Health FHIR V
 
 ## Usage
 
+### Validate FHIR Resource
+
 Send a POST request to the `/fhir-validator/validate` endpoint with the FHIR resource in the request body.
 
 Example:
 
 ```sh
 curl -X POST http://localhost:9090/fhir-validator/validate \
+    -H "Content-Type: application/json" \
+    -d '{
+        "resourceType": "Patient",
+        "id": "example",
+        "name": [{
+            "use": "official",
+            "family": "Doe",
+            "given": ["John"]
+        }]
+    }'
+```
+
+### Validate US Core 700 Patient Profile
+
+Send a POST request to the `/fhir-validator/validateUSCore700Patient` endpoint with the FHIR resource in the request body.
+
+Example:
+
+```sh
+curl -X POST http://localhost:9090/fhir-validator/validateUSCore700Patient \
     -H "Content-Type: application/json" \
     -d '{
         "resourceType": "Patient",
