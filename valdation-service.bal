@@ -4,7 +4,7 @@ import ballerinax/health.fhir.r4;
 import ballerinax/health.fhir.r4.uscore700;
 import ballerinax/health.fhir.r4.validator;
 
-service /fhir\-validator on new http:Listener(9090) {
+service /fhir\-validator on new http:Listener(9091) {
     resource function post validate(http:Caller caller, http:Request req) returns error? {
         json body;
 
