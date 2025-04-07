@@ -12,3 +12,9 @@ org = "ballerinax"
 name = "health.fhir.r4.validator"
 version = "5.0.2"
 repository = "local"
+
+[[dependency]]
+org = "ballerinax"
+name = "health.fhir.r4.parser"
+version = "6.0.2"
+repository = "local"
