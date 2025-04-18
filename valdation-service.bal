@@ -34,9 +34,9 @@ service /fhir\-validator on new http:Listener(9091) {
                 "successful": false,
                 "errors": validationResult.message()
             });
-            io:println(validationResult);
+            io:println(validationResult, "\n");
         } else {
-            io:println("FHIR Validation Successful.");
+            io:println("FHIR Validation Successful.\n");
             response.statusCode = 200; // OK
             response.setJsonPayload({"successful": true, "errors": []});
         }
@@ -72,9 +72,9 @@ service /fhir\-validator on new http:Listener(9091) {
                 "successful": false,
                 "errors": validationResult.message()
             });
-            io:println(validationResult);
+            io:println(validationResult, "\n");
         } else {
-            io:println("FHIR Validation Successful.");
+            io:println("FHIR Validation Successful.\n");
             response.statusCode = 200; // OK
             response.setJsonPayload({"successful": true, "errors": []});
         }
@@ -111,7 +111,7 @@ service /fhir\-validator on new http:Listener(9091) {
                 "errors": parseResult.message()
             });
         } else {
-            io:println("FHIR Parsing Successful.");
+            io:println("FHIR Parsing Successful.\n");
             response.statusCode = 200; // OK
             response.setJsonPayload({"successful": true, "parsedResource": parseResult.toJson()});
         }

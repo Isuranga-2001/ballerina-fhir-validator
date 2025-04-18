@@ -10,7 +10,7 @@ observabilityIncluded = true
 [[dependency]]
 org = "ballerinax"
 name = "health.fhir.r4.validator"
-version = "5.0.2"
+version = "5.0.1"
 repository = "local"
 
 [[dependency]]
